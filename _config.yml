@@ -4,11 +4,11 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "Mediator"
+title: "hyeon-jeong keem GitBlog"
 description: > # this means to ignore newlines until "email:"
-   A Jekyll theme - Medium inspired
+   아직 수정중 입니다.
 
-email: a-mail@mail.mail
+email: hyeomjeom@gmail.com
 #blog logo
 logo: "/assets/images/df_logo.jpg"
 float_logo: true # true, false (default)
@@ -22,10 +22,10 @@ author_image: "/assets/images/author.jpg"
 
 paginate:	5
 
-url: "http://myblog.***.***" # the base hostname & protocol for your site
+url: "https://github.com/hj-keem" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
-twitter_handle: '@dirkfabisch'
+twitter_handle: x
 
 #fill in disqus shortname to use disqus
 #disqus: disqus-shortname
