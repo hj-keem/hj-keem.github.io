@@ -14,11 +14,11 @@ logo: "/assets/images/gitblog_profile.jpg"
 float_logo: true # true, false (default)
 
 # blog cover
-cover: "/assets/images/gitblog_backgrond.jpg"
+cover: "/assets/images/gitblog_backgrond.jpeg"
 
 name: 'HyeonJeong Kim'
 author: 'HyeonJeong Kim'
-author_image: "/assets/images/gitblog_profile.jpg"
+author_image: "/assets/images/gitblog_profile.jpeg"
 
 paginate:	5
 
