@@ -4,9 +4,9 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "hyeon-jeong keem GitBlog"
+title: "HyeonJeong GitBlog"
 description: > # this means to ignore newlines until "email:"
-   아직 수정중 입니다.
+   Java 백엔드 개발자 준비중입니다.
 
 email: hyeomjeom@gmail.com
 #blog logo
@@ -16,9 +16,9 @@ float_logo: true # true, false (default)
 # blog cover
 cover: "/assets/images/gitblog_backgrond.jpg"
 
-name: 'Dirk Fabisch'
-author: 'Dirk Fabisch'
-author_image: "/assets/images/author.jpg"
+name: 'HyeonJeong Kim'
+author: 'HyeonJeong Kim'
+author_image: "/assets/images/gitblog_profile.jpg"
 
 paginate:	5
 
@@ -49,7 +49,7 @@ social:
 #    share_link: "&amp;u="
 
   - icon:	github
-    url:	https://github.com/dirkfabisch
+    url:	https://github.com/hj-keem
     desc:	Fork me on github
     share_url:
     share_title:
