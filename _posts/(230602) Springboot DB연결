@@ -6,7 +6,7 @@ categories: jekyll update
 tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 ---
-프로그래머스 - 마지막 두 원소 (정답입니다인줄 알았는데 틀렸습니다였음, 테스트케이스 딱 하나에서 걸린 상황, 해결해야됨)
+#프로그래머스 - 마지막 두 원소 (정답입니다인줄 알았는데 틀렸습니다였음, 테스트케이스 딱 하나에서 걸린 상황, 해결해야됨)
 
 class Solution {
     public int[] solution(int[] num_list) {
