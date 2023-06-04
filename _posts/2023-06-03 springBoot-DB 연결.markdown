@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "(230603) Springboot DB연결하기"
 date:   2014-08-29 14:34:25
 categories: jekyll update
 tags: featured
