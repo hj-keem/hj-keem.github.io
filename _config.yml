@@ -10,11 +10,11 @@ description: > # this means to ignore newlines until "email:"
 
 email: hyeomjeom@gmail.com
 #blog logo
-logo: "/assets/images/df_logo.jpg"
+logo: "/assets/images/gitblog_profile.jpg"
 float_logo: true # true, false (default)
 
 # blog cover
-cover: "/assets/images/cA4aKEIPQrerBnp1yGHv_IMG_9534-3-2.jpg"
+cover: "/assets/images/gitblog_backgrond.jpg"
 
 name: 'Dirk Fabisch'
 author: 'Dirk Fabisch'
