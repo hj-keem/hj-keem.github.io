@@ -6,7 +6,272 @@ categories: jekyll update
 tags: featured
 image: /assets/article_images/2014-08-29-welcome-to-jekyll/desktop.JPG
 ---
+1-1. 연동 방법
 
+dao package 생성 > dao 패키지 안에 UserDao 클래스 생성 
+
+(해당 코드는 새로운 데이터 Insert )
+
+package com.example.Springbootgradle.dao;
+
+import com.example.Springbootgradle.domain.User;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Map;
+
+import static java.lang.System.getenv;
+//데이터를 추가(Insert), 삭제(Delete), 수정(Update)
+
+public class UserDao {
+    public void add() throws ClassNotFoundException, SQLException {
+        Map<String, String> env = getenv();
+        String dbHost = env.get("DB_HOST");
+        String dbUser = env.get("DB_USER");
+        String dbPassword = env.get("DB_PASSWORD");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+
+        PreparedStatement pstmt = conn.prepareStatement("insert into users(id, name, password) values (?, ?, ?)");
+        pstmt.setString(1, "1");
+        pstmt.setString(2, "kyeongrok");
+        pstmt.setString(3, "12345678");
+
+        pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+    }
+
+    public User get() {
+        return new User();
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+            UserDao userDao = new UserDao();
+            userDao.add();
+        }
+    }
+Edit Configurations > UserDao > Environment variables
+
+
+preparedStatement 에 넣을 값을 입력 (DB_HOST, DB_USER, DB_PASSWORD)
+
+
+사용한 기술들 : AWS + Docker + MySql + SpringBoot + DataGrip + DAO + Environment Variable + SQL
+
+ 
+
+ 
+
+1-2. enviroment variables 및 사용 변수 설명
+
+- DB_HOST : jdbc:mysql://[ec2인스턴스 퍼블릭 주소]:3306/[db명]
+
+- DB_USER : mysql ssh 접속 시 설정한 host name
+
+- DB_PASSWORD : mysql ssh 접속 시 설정한 password
+
+ 
+
+- excute : boolean 타입의 값을 반환하며 모든 sql 문장과 사용이 가능하다. Select, Insert, Update, Delete, DDL 문을 모두 실행
+
+- excuteUpdate : 실행 결과로 int 타입의 값을 반환 , select 구문을 제외한 다른 구문을 실행할 때 사용되는 함수
+
+                              -> INSERT / DELETE / UPDATE 관련 구문에서는 반영된 레코드의 건수를 반환
+
+                              -> CREATE / DROP 관련 구문에서는 -1 을 반환
+
+- excuteQuery : 데이터베이스에서 데이터를 가져와서 결과 집합을 반환합니다. 이 메서드는 Select 문에서만 실행
+
+ 
+
+ 
+
+1-3. host 주소 설명
+
+jdbc:mysql://localhost:3306/spring-db;DB_USER=root;DB_PASSWORD=12345678
+
+- jdbc : 프로토콜 (=http와 비슷)
+
+- mysql : DB 제품 ( oracle, workbench ~~ etc.)
+
+- localhost : 컴퓨터의 서버 주소
+
+- 3306 : 포트 번호
+
+ 
+
+ 
+
+1-4. insert 데이터 하나 더 추가
+
+package com.example.Springbootgradle.dao;
+
+import com.example.Springbootgradle.domain.User;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Map;
+
+import static java.lang.System.getenv;
+
+public class UserDao {
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        Map<String, String> env = getenv();
+        String dbHost = env.get("DB_HOST");
+        String dbUser = env.get("DB_USER");
+        String dbPassword = env.get("DB_PASSWORD");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+
+        PreparedStatement pstmt = conn.prepareStatement("insert into users(id, name, password) values (?, ?, ?)");
+        pstmt.setString(1, user.getId());
+        pstmt.setString(2, user.getName());
+        pstmt.setString(3, user.getPassword());
+
+        pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+    }
+
+    public User get() {
+        return new User();
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+            UserDao userDao = new UserDao();
+            //userDao.add();
+        User user = new User();
+        user.setId("2");
+        user.setName("kyeongrok");
+        user.setPassword("1234");
+        userDao.add(user);
+        }
+    }
+ 
+
+ 
+
+ 
+
+1-5. select get() 추가
+
+package com.example.Springbootgradle.dao;
+
+import com.example.Springbootgradle.domain.User;
+
+import java.sql.*;
+import java.util.Map;
+
+import static java.lang.System.getenv;
+
+public class UserDao {
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        Map<String, String> env = getenv();
+        String dbHost = env.get("DB_HOST");
+        String dbUser = env.get("DB_USER");
+        String dbPassword = env.get("DB_PASSWORD");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+
+        PreparedStatement pstmt = conn.prepareStatement("insert into users(id, name, password) values (? ,?,?)");
+        pstmt.setString(1, user.getId());
+        pstmt.setString(2, user.getName());
+        pstmt.setString(3, user.getPassword());
+
+        pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+    }
+
+    public User get(String id) throws ClassNotFoundException, SQLException {
+        Map<String, String> env = getenv();
+        String dbHost = env.get("DB_HOST"); //DB_HOST=jdbc:mysql://localhost:3306/spring-db
+        String dbUser = env.get("DB_USER");
+        String dbPassword = env.get("DB_PASSWORD");
+
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(
+                dbHost, dbUser, dbPassword
+        );
+
+        PreparedStatement pstmt = conn.prepareStatement("select id, name, password from users where id = ?");
+        pstmt.setString(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        rs.next(); // ctrl + enter
+
+        User user = new User();
+        user.setId(rs.getString("id"));
+        user.setName(rs.getString("name"));
+        user.setPassword(rs.getString("password"));
+
+        rs.close();
+        pstmt.close();
+        conn.close();
+
+        return user;
+    }
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        UserDao userDao = new UserDao();
+        User user = new User();
+        user.setId("2");
+        user.setName("kyeongrok");
+        user.setPassword("1234");
+//        userDao.add(user);
+
+// 콘솔에서 데이터 확인
+        User selectedUser = userDao.get("2");
+        System.out.println(selectedUser.getId());
+        System.out.println(selectedUser.getName());
+        System.out.println(selectedUser.getPassword());
+    }
+}
+// userDao.add(user) : 주석처리 한 이유는 이미 insert로 id-2번이 존재하기 때문에 에러가 난다.
+
+ 
+
+ 
+
+DAO(Data Access Object)
+
+- 데이터를 연결하는 오브젝트
+
+- db에 쿼리를 실행하는 기능
+
+ 
+
+connection 분리하여 사용하기
+
+public class UserDao {
+    public Connection getConnection() throws ClassNotFoundException, SQLException {
+        Map<String, String> env = getenv();
+        String dbHost = env.get("DB_HOST");
+        String dbUser = env.get("DB_USER");
+        String dbPassword = env.get("DB_PASSWORD");
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+        return conn;
+    }
+    public void add(User user) throws ClassNotFoundException, SQLException {
+        Connection conn = getConnection();
+
+        PreparedStatement pstmt = conn.prepareStatement("insert into users(id, name, password) values (? ,?,?)");
+        pstmt.setString(1, user.getId());
+        pstmt.setString(2, user.getName());
+        pstmt.setString(3, user.getPassword());
+
+        pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+    }
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
 
