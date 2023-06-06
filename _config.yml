@@ -11,7 +11,6 @@ description: > # this means to ignore newlines until "email:"
 email: hyeomjeom@gmail.com
 #blog logo
 logo: "/assets/images/gitblog_profile.jpeg"
-mini_logo: "/assets/images/github_profile.png"
 float_logo: true # true, false (default)
 
 # blog cover
