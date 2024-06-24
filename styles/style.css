@@ -30,14 +30,45 @@ main {
     display: inline-block; /* 인라인 블록 요소로 설정 */
 }
 
-.container {
+.container-0 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #5477AD;
+    padding: 0 50px; /* 왼쪽과 오른쪽 여백을 20px로 설정 */
+    padding-top: 30px; /* 예시: .subtitle과의 간격을 조정할 패딩 설정 */
+    padding-bottom: 50px; 
+}
+
+.container-1 {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     color: #5477AD;
     /* font-weight: 500; */
     padding: 0 50px; /* 왼쪽과 오른쪽 여백을 20px로 설정 */
-    padding-top: 30px; /* 예시: .subtitle과의 간격을 조정할 패딩 설정 */
+    padding-bottom: 30px; /*한 컨테이너 끝날 때 간격*/
+}
+
+.container-2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #5477AD;
+    /* font-weight: 500; */
+    padding: 0 50px; /* 왼쪽과 오른쪽 여백을 20px로 설정 */
+    padding-bottom: 30px; /*한 컨테이너 끝날 때 간격*/
+}
+
+.container-project {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    color: #5477AD;
+    /* font-weight: 500; */
+    padding: 0 50px; /* 왼쪽과 오른쪽 여백을 20px로 설정 */
+    padding-bottom: 80px; /*한 컨테이너 끝날 때 간격*/
+    gap: 0px; /* 섹션 간의 간격 설정, 필요한 만큼 조절 가능 */
 }
 
 .left-side {
@@ -55,10 +86,27 @@ main {
     font-size: 500;
 }
 
+.left-project-section, .middle-project-section, .right-project-section {
+    flex: 1; /* 섹션이 같은 비율로 공간을 차지하도록 설정 */
+    min-width: 300px; /* 각 섹션의 최소 너비 설정 */
+    box-sizing: border-box; /* 패딩과 보더를 포함하여 너비를 계산 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+
 .left-side img {
     max-width: 100%;
     height: auto;
     display: block;
+}
+
+.left {
+    width: 20%;
+}
+
+.right {
+    width: 80%;
+    text-align: left;
 }
 
 h1, h2 {
@@ -79,8 +127,20 @@ h1, h2 {
 }
 .contact-title, .about-title {
     font-weight: 500;
+    font-size: 23px;
+    color: #5477AD;
     margin-bottom: 20px;
+
 }
+
+.education-title, .experience-title {
+    font-weight: 500;
+    font-size: 23px;
+    color: #5477AD;
+    margin-bottom: 30px;
+    padding: 0 50px; /* 왼쪽과 오른쪽 여백을 20px로 설정 */
+}
+
 
 .contact-sub {
     color: #5477AD;
@@ -102,3 +162,86 @@ h1, h2 {
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+/* 구분선 추가 */
+.hr-bottom {
+    width: 93%;
+    border-color: #F7F7F7;
+    margin-bottom: 40px; /* 구분선 아래의 간격 설정 */
+    border-width: 0.1px; /* 구분선 두께 설정 */
+}
+
+.date-text {
+    color:#6E6E6E; 
+    font-size: 15px; 
+    font-weight: normal;
+}
+
+.content-sub {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content-text {
+    color: #6E6E6E;
+    /*#4D4D4D*/
+    font-size: 17px; 
+    font-weight: normal;
+}
+
+.skill-title{
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* 공백을 제거하는 클래스 */
+.no-margin-wrapper p {
+    margin: 3px;
+    padding: 0;
+}
+
+.no-margin-img {
+    margin-top: 20px;
+    /* margin: 3px; */
+}
+
+.circle {
+    /* width: 60px;
+    height: 30px; */
+    background-color: #5477AD;
+    color: white;
+    display: inline-flex;
+    padding: 0px 8px; /* 도형 내부 여백 설정 */
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    font-size: 13px;
+    font-weight: normal;
+    text-align: center;
+    line-height: 30px; /* 높이와 동일하게 설정하여 수직 중앙 정렬 */
+    margin-bottom: 5px; /* 도형 사이의 세로 간격 조정 */
+}
+
+.project-img {
+    width: 300px;
+    height: 200px;
+    display: block; /* 이미지와 하단 텍스트 사이에 여백 추가 */
+    margin-bottom: 20px; /* 이미지 아래쪽에 여백 추가 */
+}
+
+.project-text {
+    color: black;
+    font-weight: bold;
+}
+
+.content-sub-education {
+    color: black;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
+
+
